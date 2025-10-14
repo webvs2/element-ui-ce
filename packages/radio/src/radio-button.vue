@@ -65,7 +65,7 @@
     computed: {
       value: {
         get() {
-          return this._radioGroup.value;
+          return this._radioGroup.value; // 获取el-radio-group组件的value值
         },
         set(value) {
           this._radioGroup.$emit('input', value);
@@ -73,14 +73,14 @@
       },
       _radioGroup() {
         let parent = this.$parent;
-        while (parent) {
+        while (parent) { // 向上查找父组件，直到找到el-radio-group组件
           if (parent.$options.componentName !== 'ElRadioGroup') {
             parent = parent.$parent;
           } else {
             return parent;
           }
         }
-        return false;
+        return false; // 如果没有找到el-radio-group组件，返回false
       },
       activeStyle() {
         return {
@@ -107,7 +107,7 @@
     methods: {
       handleChange() {
         this.$nextTick(() => {
-          this.dispatch('ElRadioGroup', 'handleChange', this.value);
+          this.dispatch('ElRadioGroup', 'handleChange', this.value);// 冒泡触发父组件的handleChange方法
         });
       }
     }
