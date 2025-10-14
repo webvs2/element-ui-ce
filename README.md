@@ -35,14 +35,15 @@
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
   </a>
 </p>
-
+<h1>Community version!</h1>
 > A Vue.js 2.0 UI Toolkit for Web.
 
-Element will stay with Vue 2.x 
+Element will stay with Vue 2.x
 
 For Vue 3.0, we recommend using [Element Plus](https://github.com/element-plus/element-plus)(Element Plus is a community develop project)
 
 ## Links
+
 - Homepage and documentation
   - [International users](http://element.eleme.io/#/en-US)
   - [Chinese users](http://element.eleme.io/#/zh-CN)
@@ -66,48 +67,58 @@ For Vue 3.0, we recommend using [Element Plus](https://github.com/element-plus/e
   - [Chinese users](https://gitter.im/ElemeFE/element)
 
 ## Install
+
 ```shell
 npm install element-ui -S
 ```
 
 ## Quick Start
-``` javascript
-import Vue from 'vue'
-import Element from 'element-ui'
 
-Vue.use(Element)
+```javascript
+import Vue from "vue";
+import Element from "element-ui";
+
+Vue.use(Element);
 
 // or
 import {
   Select,
-  Button
+  Button,
   // ...
-} from 'element-ui'
+} from "element-ui";
 
-Vue.component(Select.name, Select)
-Vue.component(Button.name, Button)
+Vue.component(Select.name, Select);
+Vue.component(Button.name, Button);
 ```
+
 For more information, please refer to [Quick Start](http://element.eleme.io/#/en-US/component/quickstart) in our documentation.
 
 ## Browser Support
+
 Modern browsers and Internet Explorer 10+.
 
 ## Development
+
 Skip this part if you just want to use Element.
 
 For those who are interested in contributing to Element, please refer to our contributing guide ([中文](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.zh-CN.md) | [English](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.en-US.md) | [Español](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.es.md) | [Français](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.fr-FR.md)) to see how to run this project.
 
 ## Changelog
+
 Detailed changes for each release are documented in the [release notes](https://github.com/ElemeFE/element/releases).
 
 ## FAQ
+
 We have collected some [frequently asked questions](https://github.com/ElemeFE/element/blob/master/FAQ.md). Before reporting an issue, please search if the FAQ has the answer to your problem.
 
 ## Contribution
+
 Please make sure to read the contributing guide ([中文](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.zh-CN.md) | [English](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.en-US.md) | [Español](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.es.md) | [Français](https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.fr-FR.md)) before making a pull request.
 
 ## Special Thanks
+
 English documentation is brought to you by SwiftGG Translation Team:
+
 - [raychenfj](https://github.com/raychenfj)
 - [kevin](http://thekevin.cn/)
 - [曾小涛](https://github.com/zengxiaotao)
@@ -120,6 +131,7 @@ English documentation is brought to you by SwiftGG Translation Team:
 - [mmoaay](https://github.com/mmoaay)
 
 Spanish documentation is made possible by these community developers:
+
 - [adavie1](https://github.com/adavie1)
 - [carmencitaqiu](https://github.com/carmencitaqiu)
 - [coderdiaz](https://github.com/coderdiaz)
@@ -132,15 +144,10 @@ Spanish documentation is made possible by these community developers:
 - [thechosenjuan](https://github.com/thechosenjuan)
 
 French documentation is made possible by these community developers:
+
 - [smalesys](https://github.com/smalesys)
 - [blombard](https://github.com/blombard)
 
-## Join Discussion Group
-
-Scan the QR code using [Dingtalk App](https://www.dingtalk.com/) to join in discussion group :
-
-<img alt="Join Discusion Group" src="https://user-images.githubusercontent.com/17680888/93177882-0ae92d80-f766-11ea-870d-3fa2d7f06454.png" width="300">
-
-
 ## LICENSE
+
 [MIT](LICENSE)
