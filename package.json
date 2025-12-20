@@ -37,7 +37,7 @@
     },
     {
       "domain": "element-theme",
-      "public": "examples/element-ui",
+      "public": "examples/element-ui-ce",
       "build": [
         "yarn",
         "npm run deploy:build"
@@ -53,6 +53,11 @@
     "eleme",
     "vue",
     "components"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
   ],
   "license": "MIT",
   "bugs": {
