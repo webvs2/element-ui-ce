@@ -24,9 +24,9 @@ then
   npm version $VERSION --message "[release] $VERSION"
   if [[ $VERSION =~ "beta" ]]
   then
-    npm publish --tag beta
+    npm publish --tag beta ${NPM_OTP:+--otp=$NPM_OTP}
   else
-    npm publish
+    npm publish ${NPM_OTP:+--otp=$NPM_OTP}
   fi
   cd ../..
 
@@ -44,8 +44,8 @@ then
 
   if [[ $VERSION =~ "beta" ]]
   then
-    npm publish --tag beta
+    npm publish --tag beta ${NPM_OTP:+--otp=$NPM_OTP}
   else
-    npm publish
+    npm publish ${NPM_OTP:+--otp=$NPM_OTP}
   fi
 fi
