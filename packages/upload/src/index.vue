@@ -1,10 +1,10 @@
 <script>
 import UploadList from './upload-list';
 import Upload from './upload';
-import ElProgress from 'element-ui/packages/progress';
-import Migrating from 'element-ui/src/mixins/migrating';
+import ElProgress from 'element-ui-ce/packages/progress';
+import Migrating from 'element-ui-ce/src/mixins/migrating';
 
-function noop() {}
+function noop() { }
 
 export default {
   name: 'ElUpload',
@@ -323,14 +323,14 @@ export default {
 
     return (
       <div>
-        { this.listType === 'picture-card' ? uploadList : ''}
+        {this.listType === 'picture-card' ? uploadList : ''}
         {
           this.$slots.trigger
             ? [uploadComponent, this.$slots.default]
             : uploadComponent
         }
         {this.$slots.tip}
-        { this.listType !== 'picture-card' ? uploadList : ''}
+        {this.listType !== 'picture-card' ? uploadList : ''}
       </div>
     );
   }

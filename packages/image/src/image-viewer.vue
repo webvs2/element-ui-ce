@@ -1,6 +1,7 @@
 <template>
   <transition name="viewer-fade">
-    <div tabindex="-1" ref="el-image-viewer__wrapper" class="el-image-viewer__wrapper" :style="{ 'z-index': viewerZIndex }">
+    <div tabindex="-1" ref="el-image-viewer__wrapper" class="el-image-viewer__wrapper"
+      :style="{ 'z-index': viewerZIndex }">
       <div class="el-image-viewer__mask" @click.self="handleMaskClick"></div>
       <!-- CLOSE -->
       <span class="el-image-viewer__btn el-image-viewer__close" @click="hide">
@@ -8,17 +9,13 @@
       </span>
       <!-- ARROW -->
       <template v-if="!isSingle">
-        <span
-          class="el-image-viewer__btn el-image-viewer__prev"
-          :class="{ 'is-disabled': !infinite && isFirst }"
+        <span class="el-image-viewer__btn el-image-viewer__prev" :class="{ 'is-disabled': !infinite && isFirst }"
           @click="prev">
-          <i class="el-icon-arrow-left"/>
+          <i class="el-icon-arrow-left" />
         </span>
-        <span
-          class="el-image-viewer__btn el-image-viewer__next"
-          :class="{ 'is-disabled': !infinite && isLast }"
+        <span class="el-image-viewer__btn el-image-viewer__next" :class="{ 'is-disabled': !infinite && isLast }"
           @click="next">
-          <i class="el-icon-arrow-right"/>
+          <i class="el-icon-arrow-right" />
         </span>
       </template>
       <!-- ACTIONS -->
@@ -35,17 +32,8 @@
       </div>
       <!-- CANVAS -->
       <div class="el-image-viewer__canvas">
-        <img
-          v-for="(url, i) in urlList"
-          v-if="i === index"
-          ref="img"
-          class="el-image-viewer__img"
-          :key="url"
-          :src="currentImg"
-          :style="imgStyle"
-          referrerpolicy='no-referrer'
-          @load="handleImgLoad"
-          @error="handleImgError"
+        <img v-for="(url, i) in urlList" v-if="i === index" ref="img" class="el-image-viewer__img" :key="url"
+          :src="currentImg" :style="imgStyle" referrerpolicy='no-referrer' @load="handleImgLoad" @error="handleImgError"
           @mousedown="handleMouseDown">
       </div>
     </div>
@@ -53,9 +41,9 @@
 </template>
 
 <script>
-import { on, off } from 'element-ui/src/utils/dom';
-import { rafThrottle, isFirefox } from 'element-ui/src/utils/util';
-import { PopupManager } from 'element-ui/src/utils/popup';
+import { on, off } from 'element-ui-ce/src/utils/dom';
+import { rafThrottle, isFirefox } from 'element-ui-ce/src/utils/util';
+import { PopupManager } from 'element-ui-ce/src/utils/popup';
 
 const Mode = {
   CONTAIN: {
@@ -84,11 +72,11 @@ export default {
     },
     onSwitch: {
       type: Function,
-      default: () => {}
+      default: () => { }
     },
     onClose: {
       type: Function,
-      default: () => {}
+      default: () => { }
     },
     initialIndex: {
       type: Number,

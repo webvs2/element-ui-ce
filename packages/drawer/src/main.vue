@@ -1,39 +1,17 @@
 <template>
-  <transition
-    name="el-drawer-fade"
-    @after-enter="afterEnter"
-    @after-leave="afterLeave">
-    <div
-      class="el-drawer__wrapper"
-      tabindex="-1"
-      v-show="visible">
-      <div
-        class="el-drawer__container"
-        :class="visible && 'el-drawer__open'"
-        @click.self="handleWrapperClick"
-        role="document"
-        tabindex="-1">
-        <div
-          aria-modal="true"
-          aria-labelledby="el-drawer__title"
-          :aria-label="title"
-          class="el-drawer"
-          :class="[direction, customClass]"
-          :style="isHorizontal ? `width: ${drawerSize}` : `height: ${drawerSize}`"
-          ref="drawer"
-          role="dialog"
-          tabindex="-1"
-          >
+  <transition name="el-drawer-fade" @after-enter="afterEnter" @after-leave="afterLeave">
+    <div class="el-drawer__wrapper" tabindex="-1" v-show="visible">
+      <div class="el-drawer__container" :class="visible && 'el-drawer__open'" @click.self="handleWrapperClick"
+        role="document" tabindex="-1">
+        <div aria-modal="true" aria-labelledby="el-drawer__title" :aria-label="title" class="el-drawer"
+          :class="[direction, customClass]" :style="isHorizontal ? `width: ${drawerSize}` : `height: ${drawerSize}`"
+          ref="drawer" role="dialog" tabindex="-1">
           <header class="el-drawer__header" id="el-drawer__title" v-if="withHeader">
             <slot name="title">
               <span role="heading" :title="title">{{ title }}</span>
             </slot>
-            <button
-              :aria-label="`close ${title || 'drawer'}`"
-              class="el-drawer__close-btn"
-              type="button"
-              v-if="showClose"
-              @click="closeDrawer">
+            <button :aria-label="`close ${title || 'drawer'}`" class="el-drawer__close-btn" type="button"
+              v-if="showClose" @click="closeDrawer">
               <i class="el-dialog__close el-icon el-icon-close"></i>
             </button>
           </header>
@@ -47,8 +25,8 @@
 </template>
 
 <script>
-import Popup from 'element-ui/src/utils/popup';
-import emitter from 'element-ui/src/mixins/emitter';
+import Popup from 'element-ui-ce/src/utils/popup';
+import emitter from 'element-ui-ce/src/mixins/emitter';
 
 export default {
   name: 'ElDrawer',

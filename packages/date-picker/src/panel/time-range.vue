@@ -45,16 +45,16 @@ import TimeSpinner from '../basic/time-spinner';
 const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss');
 const MAX_TIME = parseDate('23:59:59', 'HH:mm:ss');
 
-const minTimeOfDay = function (date) {
+const minTimeOfDay = function(date) {
   return modifyDate(MIN_TIME, date.getFullYear(), date.getMonth(), date.getDate());
 };
 
-const maxTimeOfDay = function (date) {
+const maxTimeOfDay = function(date) {
   return modifyDate(MAX_TIME, date.getFullYear(), date.getMonth(), date.getDate());
 };
 
 // increase time by amount of milliseconds, but within the range of day
-const advanceTime = function (date, amount) {
+const advanceTime = function(date, amount) {
   return new Date(Math.min(date.getTime() + amount, maxTimeOfDay(date).getTime()));
 };
 

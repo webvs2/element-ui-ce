@@ -1,5 +1,5 @@
-import { once, on } from 'element-ui/src/utils/dom';
-import { isMac } from 'element-ui/src/utils/util';
+import { once, on } from 'element-ui-ce/src/utils/dom';
+import { isMac } from 'element-ui-ce/src/utils/util';
 
 export default {
   bind(el, binding, vnode) {

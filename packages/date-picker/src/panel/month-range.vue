@@ -55,8 +55,8 @@ import {
 import Clickoutside from 'element-ui-ce/src/utils/clickoutside';
 import Locale from 'element-ui-ce/src/mixins/locale';
 import MonthTable from '../basic/month-table';
-import ElInput from 'element-ui/packages/input';
-import ElButton from 'element-ui/packages/button';
+import ElInput from 'element-ui-ce/packages/input';
+import ElButton from 'element-ui-ce/packages/button';
 
 const calcDefaultValue = (defaultValue) => {
   if (Array.isArray(defaultValue)) {
@@ -236,10 +236,10 @@ export default {
         value && value[0] && value[1] &&
         isDate(value[0]) && isDate(value[1]) &&
         value[0].getTime() <= value[1].getTime() && (
-          typeof this.disabledDate === 'function'
-            ? !this.disabledDate(value[0]) && !this.disabledDate(value[1])
-            : true
-        );
+        typeof this.disabledDate === 'function'
+          ? !this.disabledDate(value[0]) && !this.disabledDate(value[1])
+          : true
+      );
     },
 
     resetView() {

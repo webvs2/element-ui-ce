@@ -1,8 +1,8 @@
 <script>
-import ElScrollbar from 'element-ui/packages/scrollbar';
+import ElScrollbar from 'element-ui-ce/packages/scrollbar';
 import CascaderNode from './cascader-node.vue';
-import Locale from 'element-ui/src/mixins/locale';
-import { generateId } from 'element-ui/src/utils/util';
+import Locale from 'element-ui-ce/src/mixins/locale';
+import { generateId } from 'element-ui-ce/src/utils/util';
 
 export default {
   name: 'ElCascaderMenu',
@@ -76,7 +76,7 @@ export default {
 
     renderEmptyText(h) {
       return (
-        <div class="el-cascader-menu__empty-text">{ this.t('el.cascader.noData') }</div>
+        <div class="el-cascader-menu__empty-text">{this.t('el.cascader.noData')}</div>
       );
     },
     renderNodeList(h) {
@@ -92,12 +92,12 @@ export default {
         const { hasChildren } = node;
         return (
           <cascader-node
-            key={ node.uid }
-            node={ node }
-            node-id={ `${menuId}-${index}` }
-            aria-haspopup={ hasChildren }
-            aria-owns = { hasChildren ? menuId : null }
-            { ...events }></cascader-node>
+            key={node.uid}
+            node={node}
+            node-id={`${menuId}-${index}`}
+            aria-haspopup={hasChildren}
+            aria-owns={hasChildren ? menuId : null}
+            {...events}></cascader-node>
         );
       });
 
@@ -122,15 +122,15 @@ export default {
       <el-scrollbar
         tag="ul"
         role="menu"
-        id={ menuId }
+        id={menuId}
         class="el-cascader-menu"
         wrap-class="el-cascader-menu__wrap"
         view-class={{
           'el-cascader-menu__list': true,
           'is-empty': isEmpty
         }}
-        { ...events }>
-        { isEmpty ? this.renderEmptyText(h) : this.renderNodeList(h) }
+        {...events}>
+        {isEmpty ? this.renderEmptyText(h) : this.renderNodeList(h)}
       </el-scrollbar>
     );
   }

@@ -1,32 +1,25 @@
 <template>
-  <div
-    :class="[
-      'el-cascader-panel',
-      border && 'is-bordered'
-    ]"
-    @keydown="handleKeyDown">
-    <cascader-menu
-      ref="menu"
-      v-for="(menu, index) in menus"
-      :index="index"
-      :key="index"
-      :nodes="menu"></cascader-menu>
+  <div :class="[
+    'el-cascader-panel',
+    border && 'is-bordered'
+  ]" @keydown="handleKeyDown">
+    <cascader-menu ref="menu" v-for="(menu, index) in menus" :index="index" :key="index" :nodes="menu"></cascader-menu>
   </div>
 </template>
 
 <script>
 import CascaderMenu from './cascader-menu';
 import Store from './store';
-import merge from 'element-ui/src/utils/merge';
-import AriaUtils from 'element-ui/src/utils/aria-utils';
-import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
+import merge from 'element-ui-ce/src/utils/merge';
+import AriaUtils from 'element-ui-ce/src/utils/aria-utils';
+import scrollIntoView from 'element-ui-ce/src/utils/scroll-into-view';
 import {
   noop,
   coerceTruthyValueToArray,
   isEqual,
   isEmpty,
   valueEquals
-} from 'element-ui/src/utils/util';
+} from 'element-ui-ce/src/utils/util';
 
 const { keys: KeyCode } = AriaUtils;
 const DefaultProps = {
@@ -226,7 +219,7 @@ export default {
       const { checkedValue, multiple } = this;
       const checkedValues = multiple
         ? coerceTruthyValueToArray(checkedValue)
-        : [ checkedValue ];
+        : [checkedValue];
       this.checkedNodePaths = checkedValues.map(v => {
         const checkedNode = this.getNodeByValue(v);
         return checkedNode ? checkedNode.pathNodes : [];

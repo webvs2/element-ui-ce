@@ -1,103 +1,48 @@
 <template>
-  <div
-    ref="reference"
-    :class="[
-      'el-cascader',
-      realSize && `el-cascader--${realSize}`,
-      { 'is-disabled': isDisabled }
-    ]"
-    v-clickoutside="() => toggleDropDownVisible(false)"
-    @mouseenter="inputHover = true"
-    @mouseleave="inputHover = false"
-    @click="() => toggleDropDownVisible(readonly ? undefined : true)"
+  <div ref="reference" :class="[
+    'el-cascader',
+    realSize && `el-cascader--${realSize}`,
+    { 'is-disabled': isDisabled }
+  ]" v-clickoutside="() => toggleDropDownVisible(false)" @mouseenter="inputHover = true"
+    @mouseleave="inputHover = false" @click="() => toggleDropDownVisible(readonly ? undefined : true)"
     @keydown="handleKeyDown">
 
-    <el-input
-      ref="input"
-      v-model="multiple ? presentText : inputValue"
-      :size="realSize"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="isDisabled"
-      :validate-event="false"
-      :class="{ 'is-focus': dropDownVisible }"
-      @focus="handleFocus"
-      @blur="handleBlur"
-      @input="handleInput">
+    <el-input ref="input" v-model="multiple ? presentText : inputValue" :size="realSize" :placeholder="placeholder"
+      :readonly="readonly" :disabled="isDisabled" :validate-event="false" :class="{ 'is-focus': dropDownVisible }"
+      @focus="handleFocus" @blur="handleBlur" @input="handleInput">
       <template slot="suffix">
-        <i
-          v-if="clearBtnVisible"
-          key="clear"
-          class="el-input__icon el-icon-circle-close"
-          @click.stop="handleClear"></i>
-        <i
-          v-else
-          key="arrow-down"
-          :class="[
-            'el-input__icon',
-            'el-icon-arrow-down',
-            dropDownVisible && 'is-reverse'
-          ]"
-          @click.stop="toggleDropDownVisible()"></i>
+        <i v-if="clearBtnVisible" key="clear" class="el-input__icon el-icon-circle-close" @click.stop="handleClear"></i>
+        <i v-else key="arrow-down" :class="[
+          'el-input__icon',
+          'el-icon-arrow-down',
+          dropDownVisible && 'is-reverse'
+        ]" @click.stop="toggleDropDownVisible()"></i>
       </template>
     </el-input>
 
     <div v-if="multiple" class="el-cascader__tags">
-      <el-tag
-        v-for="tag in presentTags"
-        :key="tag.key"
-        type="info"
-        :size="tagSize"
-        :hit="tag.hitState"
-        :closable="tag.closable"
-        disable-transitions
-        @close="deleteTag(tag)">
+      <el-tag v-for="tag in presentTags" :key="tag.key" type="info" :size="tagSize" :hit="tag.hitState"
+        :closable="tag.closable" disable-transitions @close="deleteTag(tag)">
         <span>{{ tag.text }}</span>
       </el-tag>
-      <input
-        v-if="filterable && !isDisabled"
-        v-model.trim="inputValue"
-        type="text"
-        class="el-cascader__search-input"
-        :placeholder="presentTags.length ? '' : placeholder"
-        @input="e => handleInput(inputValue, e)"
-        @click.stop="toggleDropDownVisible(true)"
-        @keydown.delete="handleDelete">
+      <input v-if="filterable && !isDisabled" v-model.trim="inputValue" type="text" class="el-cascader__search-input"
+        :placeholder="presentTags.length ? '' : placeholder" @input="e => handleInput(inputValue, e)"
+        @click.stop="toggleDropDownVisible(true)" @keydown.delete="handleDelete">
     </div>
 
     <transition name="el-zoom-in-top" @after-leave="handleDropdownLeave">
-      <div
-        v-show="dropDownVisible"
-        ref="popper"
-        :class="['el-popper', 'el-cascader__dropdown', popperClass]">
-        <el-cascader-panel
-          ref="panel"
-          v-show="!filtering"
-          v-model="checkedValue"
-          :options="options"
-          :props="config"
-          :border="false"
-          :render-label="$scopedSlots.default"
-          @expand-change="handleExpandChange"
+      <div v-show="dropDownVisible" ref="popper" :class="['el-popper', 'el-cascader__dropdown', popperClass]">
+        <el-cascader-panel ref="panel" v-show="!filtering" v-model="checkedValue" :options="options" :props="config"
+          :border="false" :render-label="$scopedSlots.default" @expand-change="handleExpandChange"
           @close="toggleDropDownVisible(false)"></el-cascader-panel>
-        <el-scrollbar
-          ref="suggestionPanel"
-          v-if="filterable"
-          v-show="filtering"
-          tag="ul"
-          class="el-cascader__suggestion-panel"
-          view-class="el-cascader__suggestion-list"
+        <el-scrollbar ref="suggestionPanel" v-if="filterable" v-show="filtering" tag="ul"
+          class="el-cascader__suggestion-panel" view-class="el-cascader__suggestion-list"
           @keydown.native="handleSuggestionKeyDown">
           <template v-if="suggestions.length">
-            <li
-              v-for="(item, index) in suggestions"
-              :key="item.uid"
-              :class="[
-                'el-cascader__suggestion-item',
-                item.checked && 'is-checked'
-              ]"
-              :tabindex="-1"
-              @click="handleSuggestionClick(index)">
+            <li v-for="(item, index) in suggestions" :key="item.uid" :class="[
+              'el-cascader__suggestion-item',
+              item.checked && 'is-checked'
+            ]" :tabindex="-1" @click="handleSuggestionClick(index)">
               <span>{{ item.text }}</span>
               <i v-if="item.checked" class="el-icon-check"></i>
             </li>
@@ -112,21 +57,21 @@
 </template>
 
 <script>
-import Popper from 'element-ui/src/utils/vue-popper';
-import Clickoutside from 'element-ui/src/utils/clickoutside';
-import Emitter from 'element-ui/src/mixins/emitter';
-import Locale from 'element-ui/src/mixins/locale';
-import Migrating from 'element-ui/src/mixins/migrating';
-import ElInput from 'element-ui/packages/input';
-import ElTag from 'element-ui/packages/tag';
-import ElScrollbar from 'element-ui/packages/scrollbar';
-import ElCascaderPanel from 'element-ui/packages/cascader-panel';
-import AriaUtils from 'element-ui/src/utils/aria-utils';
-import { t } from 'element-ui/src/locale';
-import { isEqual, isEmpty, kebabCase } from 'element-ui/src/utils/util';
-import { isUndefined, isFunction } from 'element-ui/src/utils/types';
-import { isDef } from 'element-ui/src/utils/shared';
-import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
+import Popper from 'element-ui-ce/src/utils/vue-popper';
+import Clickoutside from 'element-ui-ce/src/utils/clickoutside';
+import Emitter from 'element-ui-ce/src/mixins/emitter';
+import Locale from 'element-ui-ce/src/mixins/locale';
+import Migrating from 'element-ui-ce/src/mixins/migrating';
+import ElInput from 'element-ui-ce/packages/input';
+import ElTag from 'element-ui-ce/packages/tag';
+import ElScrollbar from 'element-ui-ce/packages/scrollbar';
+import ElCascaderPanel from 'element-ui-ce/packages/cascader-panel';
+import AriaUtils from 'element-ui-ce/src/utils/aria-utils';
+import { t } from 'element-ui-ce/src/locale';
+import { isEqual, isEmpty, kebabCase } from 'element-ui-ce/src/utils/util';
+import { isUndefined, isFunction } from 'element-ui-ce/src/utils/types';
+import { isDef } from 'element-ui-ce/src/utils/shared';
+import { addResizeListener, removeResizeListener } from 'element-ui-ce/src/utils/resize-event';
 import debounce from 'throttle-debounce/debounce';
 
 const { keys: KeyCode } = AriaUtils;
@@ -224,7 +169,7 @@ export default {
     },
     beforeFilter: {
       type: Function,
-      default: () => (() => {})
+      default: () => (() => { })
     },
     popperClass: String
   },
@@ -660,4 +605,3 @@ export default {
   }
 };
 </script>
-

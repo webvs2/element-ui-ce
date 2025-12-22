@@ -16,8 +16,8 @@
     pickerSize ? `el-range-editor--${pickerSize}` : '',
     pickerDisabled ? 'is-disabled' : '',
     pickerVisible ? 'is-active' : ''
-  ]" @click="handleRangeClick" @mouseenter="handleMouseEnter" @mouseleave="showClose = false"
-    @keydown="handleKeydown" ref="reference" v-clickoutside="handleClose" v-else>
+  ]" @click="handleRangeClick" @mouseenter="handleMouseEnter" @mouseleave="showClose = false" @keydown="handleKeydown"
+    ref="reference" v-clickoutside="handleClose" v-else>
     <i :class="['el-input__icon', 'el-range__icon', triggerClass]"></i>
     <input autocomplete="off" :placeholder="startPlaceholder" :value="displayValue && displayValue[0]"
       :disabled="pickerDisabled" v-bind="firstInputId" :readonly="!editable || readonly" :name="name && name[0]"
@@ -40,7 +40,7 @@ import Clickoutside from 'element-ui-ce/src/utils/clickoutside';
 import { formatDate, parseDate, isDateObject, getWeekNumber } from 'element-ui-ce/src/utils/date-util';
 import Popper from 'element-ui-ce/src/utils/vue-popper';
 import Emitter from 'element-ui-ce/src/mixins/emitter';
-import ElInput from 'element-ui/packages/input';
+import ElInput from 'element-ui-ce/packages/input';
 import merge from 'element-ui-ce/src/utils/merge';
 
 const NewPopper = {
@@ -88,15 +88,15 @@ const HAVE_TRIGGER_TYPES = [
   'months',
   'years'
 ];
-const DATE_FORMATTER = function (value, format) {
+const DATE_FORMATTER = function(value, format) {
   if (format === 'timestamp') return value.getTime();
   return formatDate(value, format);
 };
-const DATE_PARSER = function (text, format) {
+const DATE_PARSER = function(text, format) {
   if (format === 'timestamp') return new Date(Number(text));
   return parseDate(text, format);
 };
-const RANGE_FORMATTER = function (value, format) {
+const RANGE_FORMATTER = function(value, format) {
   if (Array.isArray(value) && value.length === 2) {
     const start = value[0];
     const end = value[1];
@@ -107,7 +107,7 @@ const RANGE_FORMATTER = function (value, format) {
   }
   return '';
 };
-const RANGE_PARSER = function (array, format, separator) {
+const RANGE_PARSER = function(array, format, separator) {
   if (!Array.isArray(array)) {
     array = array.split(separator);
   }
@@ -262,9 +262,9 @@ const formatAsFormatAndType = (value, customFormat, type) => {
  *   2. date string
  *   3. array of 1 or 2
  */
-const valueEquals = function (a, b) {
+const valueEquals = function(a, b) {
   // considers Date object and string
-  const dateEquals = function (a, b) {
+  const dateEquals = function(a, b) {
     const aIsDate = a instanceof Date;
     const bIsDate = b instanceof Date;
     if (aIsDate && bIsDate) {
@@ -290,11 +290,11 @@ const valueEquals = function (a, b) {
   return false;
 };
 
-const isString = function (val) {
+const isString = function(val) {
   return typeof val === 'string' || val instanceof String;
 };
 
-const validator = function (val) {
+const validator = function(val) {
   // either: String, Array of String, null / undefined
   return (
     val === null ||

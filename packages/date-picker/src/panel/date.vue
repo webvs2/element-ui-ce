@@ -37,8 +37,8 @@
             </button>
             <span @click="showYearPicker" role="button" class="el-date-picker__header-label">{{ yearLabel }}</span>
             <span @click="showMonthPicker" v-show="currentView === 'date'" role="button"
-              class="el-date-picker__header-label"
-              :class="{ active: currentView === 'month' }">{{ t(`el.datepicker.month${month + 1}`) }}</span>
+              class="el-date-picker__header-label" :class="{ active: currentView === 'month' }">{{
+                t(`el.datepicker.month${month + 1}`) }}</span>
             <button type="button" @click="nextYear" :aria-label="t(`el.datepicker.nextYear`)"
               class="el-picker-panel__icon-btn el-date-picker__next-btn el-icon-d-arrow-right">
             </button>
@@ -102,8 +102,8 @@ import {
 } from 'element-ui-ce/src/utils/date-util';
 import Clickoutside from 'element-ui-ce/src/utils/clickoutside';
 import Locale from 'element-ui-ce/src/mixins/locale';
-import ElInput from 'element-ui/packages/input';
-import ElButton from 'element-ui/packages/button';
+import ElInput from 'element-ui-ce/packages/input';
+import ElButton from 'element-ui-ce/packages/button';
 import TimePicker from './time';
 import YearTable from '../basic/year-table';
 import MonthTable from '../basic/month-table';
