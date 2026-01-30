@@ -51,9 +51,9 @@ npm install element-ui-ce -S
 
 ```javascript
 import Vue from "vue";
-import Element from "element-ui-ce";
-
-Vue.use(Element);
+import ElementUIce from 'element-ui-ce';
+import 'element-ui-ce/lib/theme-chalk/index.css';
+Vue.use(ElementUIce);
 
 // or
 import {
