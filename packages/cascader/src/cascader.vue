@@ -7,7 +7,7 @@
     @mouseleave="inputHover = false" @click="() => toggleDropDownVisible(readonly ? undefined : true)"
     @keydown="handleKeyDown">
 
-    <el-input ref="input" v-model="multiple ? presentText : inputValue" :size="realSize" :placeholder="placeholder"
+    <el-input ref="input" v-model="multiple ? presentText : inputValue" :size="realSize" :placeholder="multiple && filterable ? '' : placeholder"
       :readonly="readonly" :disabled="isDisabled" :validate-event="false" :class="{ 'is-focus': dropDownVisible }"
       @focus="handleFocus" @blur="handleBlur" @input="handleInput">
       <template slot="suffix">
