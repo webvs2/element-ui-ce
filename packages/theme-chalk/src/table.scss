@@ -53,7 +53,7 @@
       transform: rotate(90deg);
     }
 
-    > .el-icon {
+    >.el-icon {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -142,7 +142,7 @@
     }
 
     &.is-hidden {
-      > * {
+      >* {
         visibility: hidden;
       }
     }
@@ -156,6 +156,7 @@
 
   @include m(small) {
     font-size: 12px;
+
     .el-table__cell {
       padding: 8px 0;
     }
@@ -163,6 +164,7 @@
 
   @include m(mini) {
     font-size: 12px;
+
     .el-table__cell {
       padding: 6px 0;
     }
@@ -190,7 +192,7 @@
     user-select: none;
     background-color: $--table-header-background-color;
 
-    > .cell {
+    >.cell {
       display: inline-block;
       box-sizing: border-box;
       position: relative;
@@ -204,7 +206,7 @@
       }
     }
 
-    &.required > div::before {
+    &.required>div::before {
       display: inline-block;
       content: "";
       width: 8px;
@@ -310,6 +312,11 @@
     overflow-x: hidden;
     overflow-y: hidden;
     box-shadow: $--table-fixed-box-shadow;
+    pointer-events: none;
+
+    >* {
+      pointer-events: auto;
+    }
 
     &::before {
       content: '';
@@ -378,6 +385,7 @@
 
   @include e(footer-wrapper) {
     margin-top: -1px;
+
     td.el-table__cell {
       border-top: $--table-border;
     }
@@ -402,33 +410,34 @@
     position: relative;
 
     @include when(scrolling-none) {
-      ~ .el-table__fixed,
-      ~ .el-table__fixed-right {
+
+      ~.el-table__fixed,
+      ~.el-table__fixed-right {
         box-shadow: none;
       }
     }
 
     @include when(scrolling-left) {
-      ~ .el-table__fixed {
+      ~.el-table__fixed {
         box-shadow: none;
       }
     }
 
     @include when(scrolling-right) {
-      ~ .el-table__fixed-right {
+      ~.el-table__fixed-right {
         box-shadow: none;
       }
     }
 
     .el-table--border {
       @include when(scrolling-right) {
-        ~ .el-table__fixed-right {
+        ~.el-table__fixed-right {
           border-left: $--table-border;
         }
       }
 
       @include when(scrolling-left) {
-        ~ .el-table__fixed {
+        ~.el-table__fixed {
           border-right: $--table-border;
         }
       }
@@ -486,7 +495,8 @@
           background: #FAFAFA;
         }
 
-        &.current-row td.el-table__cell {
+        &.current-row td.el-table__cell,
+        &.selection-row td.el-table__cell {
           background-color: $--table-current-row-background-color;
         }
       }
@@ -495,16 +505,22 @@
 
   @include e(body) {
     tr.hover-row {
-      &, &.el-table__row--striped {
-        &, &.current-row {
-          > td.el-table__cell {
+
+      &,
+      &.el-table__row--striped {
+
+        &,
+        &.current-row,
+        &.selection-row {
+          >td.el-table__cell {
             background-color: $--table-row-hover-background-color;
           }
         }
       }
     }
 
-    tr.current-row > td.el-table__cell {
+    tr.current-row>td.el-table__cell,
+    tr.selection-row>td.el-table__cell {
       background-color: $--table-current-row-background-color;
     }
   }
@@ -538,12 +554,13 @@
   }
 
   @include m(enable-row-hover) {
-    .el-table__body tr:hover > td.el-table__cell {
+    .el-table__body tr:hover>td.el-table__cell {
       background-color: $--table-row-hover-background-color;
     }
   }
 
   @include m(fluid-height) {
+
     .el-table__fixed,
     .el-table__fixed-right {
       bottom: 0;
